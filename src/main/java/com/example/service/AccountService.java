@@ -18,4 +18,8 @@ public class AccountService {
     public Account addAccount(Account account) {
         return accountRepository.save(account);
     }
+
+    public Account getAccount(Account account) {
+        return accountRepository.findAccountByUsernameAndPassword(account.getUsername(), account.getPassword());
+    }
 }

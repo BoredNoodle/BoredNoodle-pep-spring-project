@@ -22,4 +22,9 @@ public class SocialMediaController {
     public Account registerAccount(@RequestBody Account account) {
         return accountService.addAccount(account);
     }
+
+    @PostMapping("login")
+    public Account loginAccount(@RequestBody Account account) {
+        return accountService.getAccount(account);
+    }
 }
