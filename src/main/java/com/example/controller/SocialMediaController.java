@@ -2,8 +2,13 @@ package com.example.controller;
 
 import com.example.entity.Account;
 import com.example.service.AccountService;
+import com.example.entity.Message;
+import com.example.service.MessageService;
+
+import java.net.http.HttpResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -18,13 +23,26 @@ public class SocialMediaController {
     @Autowired
     private AccountService accountService;
 
+    @Autowired
+    private MessageService messageService;
+
+    public SocialMediaController(AccountService accountService, MessageService messageService) {
+        this.accountService = accountService;
+        this.messageService = messageService;
+    }
+
     @PostMapping("register")
-    public Account registerAccount(@RequestBody Account account) {
+    public @ResponseBody ResponseEntity<Account> registerAccount(@RequestBody Account account) {
         return accountService.addAccount(account);
     }
 
     @PostMapping("login")
     public Account loginAccount(@RequestBody Account account) {
         return accountService.getAccount(account);
+    }
+
+    @PostMapping("messages")
+    public Message createMessage(@RequestBody Message message) {
+        return messageService.addMessage(message);
     }
 }
