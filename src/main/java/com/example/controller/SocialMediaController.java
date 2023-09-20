@@ -5,8 +5,6 @@ import com.example.service.AccountService;
 import com.example.entity.Message;
 import com.example.service.MessageService;
 
-import java.net.http.HttpResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -37,7 +35,7 @@ public class SocialMediaController {
     }
 
     @PostMapping("login")
-    public Account loginAccount(@RequestBody Account account) {
+    public @ResponseBody ResponseEntity<Account> loginAccount(@RequestBody Account account) {
         return accountService.getAccount(account);
     }
 

@@ -28,7 +28,12 @@ public class AccountService {
         return new ResponseEntity<>(accountRepository.save(account), HttpStatus.OK);
     }
 
-    public Account getAccount(Account account) {
-        return accountRepository.findAccountByUsernameAndPassword(account.getUsername(), account.getPassword());
+    public ResponseEntity<Account> getAccount(Account account) {
+        Account loginAccount = accountRepository.findAccountByUsernameAndPassword(account.getUsername(), account.getPassword());
+        if (loginAccount != null) {
+            return new ResponseEntity<>(loginAccount, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
     }
 }
