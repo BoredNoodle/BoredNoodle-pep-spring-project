@@ -6,6 +6,7 @@ import com.example.entity.Message;
 import com.example.service.MessageService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,7 +32,7 @@ public class SocialMediaController {
 
     @PostMapping("register")
     public @ResponseBody ResponseEntity<Account> registerAccount(@RequestBody Account account) {
-        return accountService.addAccount(account);
+        return new ResponseEntity<>(accountService.addAccount(account), HttpStatus.OK);
     }
 
     @PostMapping("login")
@@ -40,7 +41,7 @@ public class SocialMediaController {
     }
 
     @PostMapping("messages")
-    public Message createMessage(@RequestBody Message message) {
+    public @ResponseBody ResponseEntity<Message> createMessage(@RequestBody Message message) {
         return messageService.addMessage(message);
     }
 }

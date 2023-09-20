@@ -1,6 +1,9 @@
 package com.example.service;
 
 import com.example.entity.Account;
+import com.example.exception.DuplicateUsernameException;
+import com.example.exception.InvalidPasswordException;
+import com.example.exception.InvalidUsernameException;
 import com.example.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,15 +20,15 @@ public class AccountService {
         this.accountRepository = accountRepository;
     }
 
-    public ResponseEntity<Account> addAccount(Account account) {
+    public Account addAccount(Account account) {
         if (account.getUsername().isBlank()) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            throw new InvalidUsernameException("Username is blank, please fill out a username");
         } else if (account.getPassword().length() < 4) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            throw new InvalidPasswordException("Password is too short");
         } else if (accountRepository.findAccountByUsername(account.getUsername()) != null) {
-            return new ResponseEntity<>(HttpStatus.CONFLICT);
+            throw new DuplicateUsernameException("Username already exists, please choose another one");
         }
-        return new ResponseEntity<>(accountRepository.save(account), HttpStatus.OK);
+        return accountRepository.save(account);
     }
 
     public ResponseEntity<Account> getAccount(Account account) {
