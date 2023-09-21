@@ -3,7 +3,6 @@ package com.example.controller;
 import com.example.entity.Account;
 import com.example.service.AccountService;
 import com.example.entity.Message;
-import com.example.exception.InvalidMessageException;
 import com.example.service.MessageService;
 
 import java.util.List;
@@ -52,5 +51,10 @@ public class SocialMediaController {
     @GetMapping("messages")
     public @ResponseBody ResponseEntity<List<Message>> getAllMessages() {
         return new ResponseEntity<List<Message>>(messageService.getAllMessages(), HttpStatus.OK);
+    }
+
+    @GetMapping("messages/{message_id}")
+    public ResponseEntity<Message> getMessageById(@PathVariable int message_id) {
+        return new ResponseEntity<Message>(messageService.getMessageById(message_id), HttpStatus.OK);
     }
 }

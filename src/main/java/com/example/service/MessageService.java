@@ -39,4 +39,13 @@ public class MessageService {
     public List<Message> getAllMessages() {
         return messageRepository.findAll();
     }
+
+    public Message getMessageById(int message_id) {
+        Optional<Message> messageOptional = messageRepository.findById(message_id);
+        if (messageOptional.isPresent()) {
+            return messageOptional.get();
+        }
+
+        return null;
+    }
 }
