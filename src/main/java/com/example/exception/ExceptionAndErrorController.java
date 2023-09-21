@@ -27,6 +27,12 @@ public class ExceptionAndErrorController {
         return e.getMessage();
     }
 
+    @ExceptionHandler(InvalidLoginException.class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    public @ResponseBody String handleInvalidLogin(InvalidLoginException e) {
+        return e.getMessage();
+    }
+
     @ExceptionHandler(InvalidMessageException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public @ResponseBody String handleInvalidMessage(InvalidMessageException e) {

@@ -2,6 +2,7 @@ package com.example.service;
 
 import com.example.entity.Account;
 import com.example.exception.DuplicateUsernameException;
+import com.example.exception.InvalidLoginException;
 import com.example.exception.InvalidPasswordException;
 import com.example.exception.InvalidUsernameException;
 import com.example.repository.AccountRepository;
@@ -31,12 +32,11 @@ public class AccountService {
         return accountRepository.save(account);
     }
 
-    public ResponseEntity<Account> getAccount(Account account) {
+    public Account getAccount(Account account) {
         Account loginAccount = accountRepository.findAccountByUsernameAndPassword(account.getUsername(), account.getPassword());
         if (loginAccount != null) {
-            return new ResponseEntity<>(loginAccount, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+            return loginAccount;
         }
+        throw new InvalidLoginException("Credentials not found in database");
     }
 }
