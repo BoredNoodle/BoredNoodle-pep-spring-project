@@ -73,13 +73,13 @@ As a user, I should be able to submit a GET request on the endpoint GET localhos
 
 - The response body should contain a JSON representation of a list containing all messages retrieved from the database. It is expected for the list to simply be empty if there are no messages. The response status should always be 200, which is the default.
 
-## (WIP) 5: Our API should be able to retrieve a message by its ID.
+## [X] 5: Our API should be able to retrieve a message by its ID.
 
 As a user, I should be able to submit a GET request on the endpoint GET localhost:8080/messages/{message_id}.
 
 - The response body should contain a JSON representation of the message identified by the message_id. It is expected for the response body to simply be empty if there is no such message. The response status should always be 200, which is the default.
 
-## 6: Our API should be able to delete a message identified by a message ID.
+## (WIP) 6: Our API should be able to delete a message identified by a message ID.
 
 As a User, I should be able to submit a DELETE request on the endpoint DELETE localhost:8080/messages/{message_id}.
 
