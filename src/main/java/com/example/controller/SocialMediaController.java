@@ -3,7 +3,10 @@ package com.example.controller;
 import com.example.entity.Account;
 import com.example.service.AccountService;
 import com.example.entity.Message;
+import com.example.exception.InvalidMessageException;
 import com.example.service.MessageService;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,12 +22,10 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class SocialMediaController {
 
-    @Autowired
     private AccountService accountService;
-
-    @Autowired
     private MessageService messageService;
 
+    @Autowired
     public SocialMediaController(AccountService accountService, MessageService messageService) {
         this.accountService = accountService;
         this.messageService = messageService;
@@ -42,6 +43,11 @@ public class SocialMediaController {
 
     @PostMapping("messages")
     public @ResponseBody ResponseEntity<Message> createMessage(@RequestBody Message message) {
-        return messageService.addMessage(message);
+        return new ResponseEntity<>(messageService.addMessage(message), HttpStatus.OK);
+    }
+
+    @GetMapping("messages")
+    public @ResponseBody ResponseEntity<List<Message>> getAllMessages() {
+        return new ResponseEntity<List<Message>>(messageService.getAllMessages(), HttpStatus.OK);
     }
 }
