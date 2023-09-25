@@ -6,6 +6,9 @@ import com.example.exception.InvalidLoginException;
 import com.example.exception.InvalidPasswordException;
 import com.example.exception.InvalidUsernameException;
 import com.example.repository.AccountRepository;
+
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,8 +34,9 @@ public class AccountService {
     }
 
     public Account getAccount(Account account) {
-        Account loginAccount = accountRepository.findAccountByUsernameAndPassword(account.getUsername(), account.getPassword());
-        if (loginAccount != null) {
+        Optional<Account> accountOptional = accountRepository.findAccountByUsernameAndPassword(account.getUsername(), account.getPassword());
+        if (accountOptional.isPresent()) {
+            Account loginAccount = accountOptional.get();
             return loginAccount;
         }
         throw new InvalidLoginException("Credentials not found in database");
