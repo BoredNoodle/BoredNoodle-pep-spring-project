@@ -46,7 +46,7 @@ public class SocialMediaController {
     }
 
     @GetMapping("messages")
-    public @ResponseBody ResponseEntity<List<Message>> getAllMessages() {
+    public ResponseEntity<List<Message>> getAllMessages() {
         return new ResponseEntity<List<Message>>(messageService.getAllMessages(), HttpStatus.OK);
     }
 
