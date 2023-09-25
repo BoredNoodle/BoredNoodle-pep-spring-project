@@ -62,4 +62,9 @@ public class SocialMediaController {
     public ResponseEntity<Integer> deleteMessage(@PathVariable int message_id) {
         return new ResponseEntity<Integer>(messageService.deleteMessage(message_id), HttpStatus.OK);
     }
+
+    @PatchMapping("/messages/{message_id}")
+    public ResponseEntity<Integer> updateMessage(@PathVariable int message_id, @RequestBody String message_text) {
+        return new ResponseEntity<Integer>(messageService.updateMessage(message_id, message_text), HttpStatus.OK);
+    }
 }

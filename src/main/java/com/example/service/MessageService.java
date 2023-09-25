@@ -58,4 +58,23 @@ public class MessageService {
 
         return 0;
     }
+
+    public int updateMessage(int message_id, String message_text) {
+        Optional<Message> messageOptional = messageRepository.findById(message_id);
+        if (messageOptional.isEmpty()) {
+            throw new InvalidMessageException("The message id was not found in the database");
+        } else if (message_text.isBlank()) {
+            throw new InvalidMessageException("The updated message text is blank");
+        } else if (message_text.length() >= 255) {
+            throw new InvalidMessageException("The updated message text is too long");
+        }
+
+        messageRepository.updateMessage(message_text, message_id);
+        Optional<Message> updatedMessage = messageRepository.findById(message_id);
+        if (updatedMessage.isPresent()) {
+            return 1;
+        }
+        
+        throw new InvalidMessageException("The message failed to update");
+    }
 }
