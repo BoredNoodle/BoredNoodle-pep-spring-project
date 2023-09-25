@@ -41,9 +41,8 @@ public class SocialMediaController {
     }
 
     @PostMapping("messages")
-    @ResponseStatus(HttpStatus.OK)
-    public Message createMessage(@RequestBody Message message) {
-        return messageService.addMessage(message);
+    public ResponseEntity<Message> createMessage(@RequestBody Message message) {
+        return new ResponseEntity<Message>(messageService.addMessage(message), HttpStatus.OK);
     }
 
     @GetMapping("messages")

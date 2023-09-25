@@ -25,12 +25,12 @@ public class MessageService {
     }
 
     public Message addMessage(Message message) {
-        Optional<Account> accountOptional = accountRepository.findById(message.getPosted_by());
+        Optional<Account> posted_by = accountRepository.findById(message.getPosted_by());
         if (message.getMessage_text().isBlank()) {
             throw new InvalidMessageException("The message is blank");
         } else if (message.getMessage_text().length() >= 255) {
             throw new InvalidMessageException("The message is too long");
-        } else if (!accountOptional.isPresent())
+        } else if (posted_by.isEmpty())
             throw new InvalidMessageException("The message was not written by a valid account");
         
         return messageRepository.save(message);
