@@ -24,7 +24,7 @@ public class AccountService {
             throw new InvalidUsernameException("Username is blank, please fill out a username");
         } else if (account.getPassword().length() < 4) {
             throw new InvalidPasswordException("Password is too short");
-        } else if (accountRepository.findAccountByUsername(account.getUsername()) != null) {
+        } else if (accountRepository.findAccountByUsername(account.getUsername()).isPresent()) {
             throw new DuplicateUsernameException("Username already exists, please choose another one");
         }
         return accountRepository.save(account);
