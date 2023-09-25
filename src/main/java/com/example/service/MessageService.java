@@ -77,4 +77,8 @@ public class MessageService {
         
         throw new InvalidMessageException("The message failed to update");
     }
+
+    public List<Message> getUserMessages(int account_id) {
+        return messageRepository.getUserMessages(account_id);
+    }
 }

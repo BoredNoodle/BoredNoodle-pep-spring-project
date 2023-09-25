@@ -67,4 +67,9 @@ public class SocialMediaController {
     public ResponseEntity<Integer> updateMessage(@PathVariable int message_id, @RequestBody String message_text) {
         return new ResponseEntity<Integer>(messageService.updateMessage(message_id, message_text), HttpStatus.OK);
     }
+
+    @GetMapping("accounts/{account_id}/messages")
+    public ResponseEntity<List<Message>> getUserMessages(@PathVariable int account_id) {
+        return new ResponseEntity<List<Message>>(messageService.getUserMessages(account_id), HttpStatus.OK);
+    }
 }
