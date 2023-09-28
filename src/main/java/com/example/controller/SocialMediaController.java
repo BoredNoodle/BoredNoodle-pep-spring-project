@@ -31,10 +31,10 @@ public class SocialMediaController {
     }
 
     /**
-     * Endpoint + Handler to register a new account.
-     * The @RequestBody annotation will automatically convert the JSON in the request body into an Account object.
-     * @param account The new account parsed from the body of the POST request.
-     * @return a ResponseEntity with the newly made account and a 200 status (OK)
+     * Endpoint on{@code POST localhost:8080/register}to register a new account.
+     * The{@code @RequestBody}annotation will automatically convert the JSON in the request body into an Account object.
+     * @param account The new Account object.
+     * @return a{@code ResponseEntity}with the newly registered account and status of {@code 200 OK}.
      */
     @PostMapping("register")
     public ResponseEntity<Account> registerAccount(@RequestBody Account account) {
