@@ -30,6 +30,12 @@ public class SocialMediaController {
         this.messageService = messageService;
     }
 
+    /**
+     * Endpoint + Handler to register a new account.
+     * The @RequestBody annotation will automatically convert the JSON in the request body into an Account object.
+     * @param account The new account parsed from the body of the POST request.
+     * @return a ResponseEntity with the newly made account and a 200 status (OK)
+     */
     @PostMapping("register")
     public ResponseEntity<Account> registerAccount(@RequestBody Account account) {
         return new ResponseEntity<Account>(accountService.addAccount(account), HttpStatus.OK);
