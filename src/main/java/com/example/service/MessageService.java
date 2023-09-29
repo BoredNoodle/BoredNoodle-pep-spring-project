@@ -24,6 +24,13 @@ public class MessageService {
         this.accountRepository = accountRepository;
     }
 
+    /**
+     * Use the MessageRepository to insert a new message into the database.
+     * @param message A Message object.
+     * @return the found account if the login operation was successful.
+     * @throws InvalidMessageException if the message text is blank or over 255 characters, or
+     *      if the posted_by account id does not belong to an existing account in the database.
+     */
     public Message addMessage(Message message) {
         Optional<Account> posted_by = accountRepository.findById(message.getPosted_by());
         if (message.getMessage_text().isBlank()) {

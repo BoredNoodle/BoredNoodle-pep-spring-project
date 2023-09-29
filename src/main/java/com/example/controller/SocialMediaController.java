@@ -52,6 +52,12 @@ public class SocialMediaController {
         return new ResponseEntity<Account>(accountService.getAccount(account), HttpStatus.OK);
     }
 
+    /**
+     * Endpoint on{@code POST localhost:8080/messages}to create a new message.
+     * The{@code @RequestBody}annotation will automatically convert the JSON in the request body into an Message object.
+     * @param message A Message object.
+     * @return a{@code ResponseEntity}with the newly made message and status of {@code 200 OK}.
+     */
     @PostMapping("messages")
     public ResponseEntity<Message> createMessage(@RequestBody Message message) {
         return new ResponseEntity<Message>(messageService.addMessage(message), HttpStatus.OK);
