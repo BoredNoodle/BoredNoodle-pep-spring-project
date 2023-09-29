@@ -94,7 +94,15 @@ public class SocialMediaController {
         return new ResponseEntity<Integer>(messageService.deleteMessage(message_id), HttpStatus.OK);
     }
 
-    @PatchMapping("/messages/{message_id}")
+    /**
+     * Endpoint on{@code PATCH localhost:8080/messages/(message_id)}to update a message from the database.
+     * The{@code @PathVariable}annotation will automatically parse the message id from the PATH parameter.
+     * The{@code @RequestBody}annotation will automatically convert the JSON in the request body into an Message object. 
+     * @param message_id An int representing a message_id.
+     * @param message A Message object.
+     * @return a{@code ResponseEntity}with the number of updated messages and status of {@code 200 OK}.
+     */
+    @PatchMapping("messages/{message_id}")
     public ResponseEntity<Integer> updateMessage(@PathVariable int message_id, @RequestBody Message message) {
         return new ResponseEntity<Integer>(messageService.updateMessage(message_id, message.getMessage_text()), HttpStatus.OK);
     }

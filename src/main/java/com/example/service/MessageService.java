@@ -83,6 +83,14 @@ public class MessageService {
         return 0;
     }
 
+    /**
+     * Use the MessageRepository to update a message from the database using its id.
+     * @param message_id an int representing a message id.
+     * @param message_text a String representing the updated message text.
+     * @return 1 if the updated operation was successfull.
+     * @throws InvalidMessageException if the updated message text is blank or over 255 characters,
+     *      or if the message to be updated is not found in the database. 
+     */
     public int updateMessage(int message_id, String message_text) {
         Optional<Message> messageOptional = messageRepository.findById(message_id);
         if (message_text.isBlank()) {
