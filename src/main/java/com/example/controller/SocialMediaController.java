@@ -63,6 +63,10 @@ public class SocialMediaController {
         return new ResponseEntity<Message>(messageService.addMessage(message), HttpStatus.OK);
     }
 
+    /**
+     * Endpoint on{@code GET localhost:8080/messages}to retrieve all messages from the database.
+     * @return a{@code ResponseEntity}with a List of every Message object from the database and status of {@code 200 OK}.
+     */
     @GetMapping("messages")
     public ResponseEntity<List<Message>> getAllMessages() {
         return new ResponseEntity<List<Message>>(messageService.getAllMessages(), HttpStatus.OK);

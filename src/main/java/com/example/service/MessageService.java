@@ -43,6 +43,10 @@ public class MessageService {
         return messageRepository.save(message);
     }
 
+    /**
+     * Use the MessageRepository to retrieve all messages from the database.
+     * @return a List containing every Message object from the database.
+     */
     public List<Message> getAllMessages() {
         return messageRepository.findAll();
     }
