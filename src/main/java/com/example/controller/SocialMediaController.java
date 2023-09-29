@@ -41,6 +41,12 @@ public class SocialMediaController {
         return new ResponseEntity<Account>(accountService.addAccount(account), HttpStatus.OK);
     }
 
+    /**
+     * Endpoint on{@code POST localhost:8080/login}to login an account.
+     * The{@code @RequestBody}annotation will automatically convert the JSON in the request body into an Account object.
+     * @param account An Account object.
+     * @return a{@code ResponseEntity}with the newly registered account and status of {@code 200 OK}.
+     */
     @PostMapping("login")
     public ResponseEntity<Account> loginAccount(@RequestBody Account account) {
         return new ResponseEntity<Account>(accountService.getAccount(account), HttpStatus.OK);

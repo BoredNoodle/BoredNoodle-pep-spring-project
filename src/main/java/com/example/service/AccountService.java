@@ -24,7 +24,7 @@ public class AccountService {
 
     /**
      * Use the AccountRepository to insert a new account into the database.
-     * @param account An account object.
+     * @param account An Account object.
      * @return the newly added account if the insert operation was successful, including 
      *         its account id.
      * @throws InvalidUsernameException will be thrown if the username field is blank.
@@ -42,6 +42,12 @@ public class AccountService {
         return accountRepository.save(account);
     }
 
+    /**
+     * Use the AccountRepository to "login" an account, e.g., find an existing account in the database.
+     * @param account An Account object.
+     * @return the found account if the login operation was successful.
+     * @throws InvalidLoginException if the given account is not found in the database.
+     */
     public Account getAccount(Account account) {
         Optional<Account> accountOptional = accountRepository.findAccountByUsernameAndPassword(account.getUsername(), account.getPassword());
         if (accountOptional.isPresent()) {

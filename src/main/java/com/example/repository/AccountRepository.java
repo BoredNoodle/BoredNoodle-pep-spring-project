@@ -13,5 +13,12 @@ public interface AccountRepository extends JpaRepository<Account, Integer>{
      * @return the entity with the given username or Optional#empty() if none found.
      */
     Optional<Account> findAccountByUsername(String username);
+
+    /**
+     * Explicitly named query that finds an account by its username and password.
+     * @param username a String username.
+     * @param password a String password.
+     * @return the entity with the given username or Optional#empty() if none found.
+     */
     Optional<Account> findAccountByUsernameAndPassword(String username, String password);
 }
