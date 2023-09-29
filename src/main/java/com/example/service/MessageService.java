@@ -27,7 +27,8 @@ public class MessageService {
     /**
      * Use the MessageRepository to insert a new message into the database.
      * @param message A Message object.
-     * @return the found account if the login operation was successful.
+     * @return the newly added message if the insert operation was successful, including 
+     *         its message_id.
      * @throws InvalidMessageException if the message text is blank or over 255 characters, or
      *      if the posted_by account id does not belong to an existing account in the database.
      */
@@ -51,6 +52,12 @@ public class MessageService {
         return messageRepository.findAll();
     }
 
+    /**
+     * Use the MessageRepository to retrieve a message from the database using its id.
+     * @param message an int representing a message id.
+     * @return the found message if the get operation was successful, or <code>null</code>
+     *      if a message was not found.
+     */
     public Message getMessageById(int message_id) {
         Optional<Message> messageOptional = messageRepository.findById(message_id);
         if (messageOptional.isPresent()) {

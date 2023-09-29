@@ -72,6 +72,12 @@ public class SocialMediaController {
         return new ResponseEntity<List<Message>>(messageService.getAllMessages(), HttpStatus.OK);
     }
 
+    /**
+     * Endpoint on{@code GET localhost:8080/messages/(message_id)}to create a new message.
+     * The{@code @PathVariable}annotation will automatically parse the message id from the PATH parameter.
+     * @param message_id An int representing a message_id.
+     * @return a{@code ResponseEntity}with the found message and status of {@code 200 OK}.
+     */
     @GetMapping("messages/{message_id}")
     public ResponseEntity<Message> getMessageById(@PathVariable int message_id) {
         return new ResponseEntity<Message>(messageService.getMessageById(message_id), HttpStatus.OK);
