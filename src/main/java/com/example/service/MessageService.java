@@ -54,7 +54,7 @@ public class MessageService {
 
     /**
      * Use the MessageRepository to retrieve a message from the database using its id.
-     * @param message an int representing a message id.
+     * @param message_id an int representing a message id.
      * @return the found message if the get operation was successful, or <code>null</code>
      *      if a message was not found.
      */
@@ -67,6 +67,12 @@ public class MessageService {
         return null;
     }
 
+    /**
+     * Use the MessageRepository to delete a message from the database using its id.
+     * @param message_id an int representing a message id.
+     * @return 1 if the message to be deleted was found, or 0 if the message to be 
+     *      deleted was not found.
+     */
     public int deleteMessage(int message_id) {
         Optional<Message> messageOptional = messageRepository.findById(message_id);
         if (messageOptional.isPresent()) {

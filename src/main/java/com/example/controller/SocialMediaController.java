@@ -83,6 +83,12 @@ public class SocialMediaController {
         return new ResponseEntity<Message>(messageService.getMessageById(message_id), HttpStatus.OK);
     }
 
+    /**
+     * Endpoint on{@code DELETE localhost:8080/messages/(message_id)}to delete a message from the database.
+     * The{@code @PathVariable}annotation will automatically parse the message id from the PATH parameter.
+     * @param message_id An int representing a message_id.
+     * @return a{@code ResponseEntity}with the number of deleted messages and status of {@code 200 OK}.
+     */
     @DeleteMapping("messages/{message_id}")
     public ResponseEntity<Integer> deleteMessage(@PathVariable int message_id) {
         return new ResponseEntity<Integer>(messageService.deleteMessage(message_id), HttpStatus.OK);
