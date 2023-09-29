@@ -11,7 +11,7 @@ public class ExceptionAndErrorController {
     /**
      * InvalidUsernameException handler.
      * @param e An InvalidUsernameException object.
-     * @return the error message of the exception object and a status of{@code 400 Bad Request}.
+     * @return the error message of the exception object and a status of {@code 400 Bad Request}.
      */
     @ExceptionHandler(InvalidUsernameException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
@@ -22,7 +22,7 @@ public class ExceptionAndErrorController {
     /**
      * InvalidPasswordException handler.
      * @param e An InvalidPasswordException object.
-     * @return the error message of the exception object and a status of{@code 400 Bad Request}.
+     * @return the error message of the exception object and a status of {@code 400 Bad Request}.
      */
     @ExceptionHandler(InvalidPasswordException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
@@ -33,7 +33,7 @@ public class ExceptionAndErrorController {
     /**
      * DuplicateUsernameException handler.
      * @param e An DuplicateUsernameException object.
-     * @return the error message of the exception object and a status of{@code 409 Conflict}.
+     * @return the error message of the exception object and a status of {@code 409 Conflict}.
      */
     @ExceptionHandler(DuplicateUsernameException.class)
     @ResponseStatus(HttpStatus.CONFLICT)
@@ -44,7 +44,7 @@ public class ExceptionAndErrorController {
     /**
      * InvalidLoginException handler.
      * @param e An InvalidLoginException object.
-     * @return the error message of the exception object and a status of{@code 401 Unauthorized}.
+     * @return the error message of the exception object and a status of {@code 401 Unauthorized}.
      */
     @ExceptionHandler(InvalidLoginException.class)
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
@@ -55,7 +55,7 @@ public class ExceptionAndErrorController {
     /**
      * InvalidMessageException handler.
      * @param e An InvalidMessageException object.
-     * @return the error message of the exception object and a status of{@code 400 Bad Request}.
+     * @return the error message of the exception object and a status of {@code 400 Bad Request}.
      */
     @ExceptionHandler(InvalidMessageException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)

@@ -31,10 +31,10 @@ public class SocialMediaController {
     }
 
     /**
-     * Endpoint on{@code POST localhost:8080/register}to register a new account.
-     * The{@code @RequestBody}annotation will automatically convert the JSON in the request body into an Account object.
+     * Endpoint on {@code POST localhost:8080/register} to register a new account.
+     * The {@code @RequestBody} annotation will automatically convert the JSON in the request body into an Account object.
      * @param account The new Account object.
-     * @return a{@code ResponseEntity}with the newly registered account and status of {@code 200 OK}.
+     * @return a {@code ResponseEntity} with the newly registered account and status of {@code 200 OK}.
      */
     @PostMapping("register")
     public ResponseEntity<Account> registerAccount(@RequestBody Account account) {
@@ -42,10 +42,10 @@ public class SocialMediaController {
     }
 
     /**
-     * Endpoint on{@code POST localhost:8080/login}to login an account.
-     * The{@code @RequestBody}annotation will automatically convert the JSON in the request body into an Account object.
+     * Endpoint on {@code POST localhost:8080/login} to login an account.
+     * The {@code @RequestBody} annotation will automatically convert the JSON in the request body into an Account object.
      * @param account An Account object.
-     * @return a{@code ResponseEntity}with the newly registered account and status of {@code 200 OK}.
+     * @return a {@code ResponseEntity} with the newly registered account and status of {@code 200 OK}.
      */
     @PostMapping("login")
     public ResponseEntity<Account> loginAccount(@RequestBody Account account) {
@@ -53,10 +53,10 @@ public class SocialMediaController {
     }
 
     /**
-     * Endpoint on{@code POST localhost:8080/messages}to create a new message.
-     * The{@code @RequestBody}annotation will automatically convert the JSON in the request body into an Message object.
+     * Endpoint on @code POST localhost:8080/messages} to create a new message.
+     * The {@code @RequestBody} annotation will automatically convert the JSON in the request body into an Message object.
      * @param message A Message object.
-     * @return a{@code ResponseEntity}with the newly made message and status of {@code 200 OK}.
+     * @return a {@code ResponseEntity} with the newly made message and status of {@code 200 OK}.
      */
     @PostMapping("messages")
     public ResponseEntity<Message> createMessage(@RequestBody Message message) {
@@ -64,8 +64,8 @@ public class SocialMediaController {
     }
 
     /**
-     * Endpoint on{@code GET localhost:8080/messages}to retrieve all messages from the database.
-     * @return a{@code ResponseEntity}with a List of every Message object from the database and status of {@code 200 OK}.
+     * Endpoint on {@code GET localhost:8080/messages} to retrieve all messages from the database.
+     * @return a {@code ResponseEntity} with a List of every Message object from the database and status of {@code 200 OK}.
      */
     @GetMapping("messages")
     public ResponseEntity<List<Message>> getAllMessages() {
@@ -73,10 +73,10 @@ public class SocialMediaController {
     }
 
     /**
-     * Endpoint on{@code GET localhost:8080/messages/(message_id)}to create a new message.
-     * The{@code @PathVariable}annotation will automatically parse the message id from the PATH parameter.
+     * Endpoint on {@code GET localhost:8080/messages/(message_id)} to create a new message.
+     * The {@code @PathVariable} annotation will automatically parse the message id from the PATH parameter.
      * @param message_id An int representing a message_id.
-     * @return a{@code ResponseEntity}with the found message and status of {@code 200 OK}.
+     * @return a {@code ResponseEntity} with the found message and status of {@code 200 OK}.
      */
     @GetMapping("messages/{message_id}")
     public ResponseEntity<Message> getMessageById(@PathVariable int message_id) {
@@ -84,10 +84,10 @@ public class SocialMediaController {
     }
 
     /**
-     * Endpoint on{@code DELETE localhost:8080/messages/(message_id)}to delete a message from the database.
-     * The{@code @PathVariable}annotation will automatically parse the message id from the PATH parameter.
+     * Endpoint on {@code DELETE localhost:8080/messages/(message_id)} to delete a message from the database.
+     * The {@code @PathVariable} annotation will automatically parse the message id from the PATH parameter.
      * @param message_id An int representing a message_id.
-     * @return a{@code ResponseEntity}with the number of deleted messages and status of {@code 200 OK}.
+     * @return a {@code ResponseEntity} with the number of deleted messages and status of {@code 200 OK}.
      */
     @DeleteMapping("messages/{message_id}")
     public ResponseEntity<Integer> deleteMessage(@PathVariable int message_id) {
@@ -96,17 +96,25 @@ public class SocialMediaController {
 
     /**
      * Endpoint on{@code PATCH localhost:8080/messages/(message_id)}to update a message from the database.
-     * The{@code @PathVariable}annotation will automatically parse the message id from the PATH parameter.
-     * The{@code @RequestBody}annotation will automatically convert the JSON in the request body into an Message object. 
+     * The {@code @PathVariable} annotation will automatically parse the message id from the PATH parameter.
+     * The {@code @RequestBody} annotation will automatically convert the JSON in the request body into an Message object. 
+     * The message text will be pulled from the Message object with the Message method {@code .getMessage_text()}.
      * @param message_id An int representing a message_id.
      * @param message A Message object.
-     * @return a{@code ResponseEntity}with the number of updated messages and status of {@code 200 OK}.
+     * @return a {@code ResponseEntity} with the number of updated messages and status of {@code 200 OK}.
      */
     @PatchMapping("messages/{message_id}")
     public ResponseEntity<Integer> updateMessage(@PathVariable int message_id, @RequestBody Message message) {
         return new ResponseEntity<Integer>(messageService.updateMessage(message_id, message.getMessage_text()), HttpStatus.OK);
     }
 
+    /**
+     * Endpoint on{@code GET localhost:8080/accounts/(account_id)/messages}to retrieve all messages by an account 
+     * from the database.
+     * The {@code @PathVariable} annotation will automatically parse the message id from the PATH parameter.
+     * @return a{@code ResponseEntity}with a List of every Message object by a given acocunt 
+     *      from the database and status of {@code 200 OK}.
+     */
     @GetMapping("accounts/{account_id}/messages")
     public ResponseEntity<List<Message>> getUserMessages(@PathVariable int account_id) {
         return new ResponseEntity<List<Message>>(messageService.getUserMessages(account_id), HttpStatus.OK);

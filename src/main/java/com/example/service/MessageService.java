@@ -107,6 +107,10 @@ public class MessageService {
         return 1;
     }
 
+    /**
+     * Use the MessageRepository to retrieve all messages by a given user  from the database.
+     * @return a List containing every Message object by the given account id from the database.
+     */
     public List<Message> getUserMessages(int account_id) {
         return messageRepository.getUserMessages(account_id);
     }
